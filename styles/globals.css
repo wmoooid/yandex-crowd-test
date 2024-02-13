@@ -96,6 +96,7 @@ h3,
 h4,
 h5 {
     font-family: var(--heading-font);
+    font-variant: lining-nums;
     text-transform: uppercase;
     margin: 0;
 }
@@ -125,7 +126,7 @@ h5 {
 }
 
 .btn_primary {
-    padding: 0.5rem 2.5rem;
+    padding: 0.95rem 2.5rem;
     color: var(--background-color);
     background-color: var(--main-color);
 }
@@ -147,7 +148,7 @@ h5 {
 }
 
 .btn_tertiary {
-    padding: 0.75rem;
+    padding: 0.4rem 0.75rem;
     color: var(--link-color);
     border: 1px solid var(--link-color);
 }
@@ -183,10 +184,16 @@ h5 {
 
 @media screen and (max-width: 960px) {
     * {
-        font-size: clamp(12px, 4.27vw, 20px);
+        font-size: clamp(12px, 4.1vw, 20px);
     }
+
     .container {
         max-width: 720px;
         padding: 0 1.25rem;
+    }
+
+    .btn_with-arrow {
+        width: 2.25rem;
+        height: 2.25rem;
     }
 }

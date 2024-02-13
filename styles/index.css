@@ -6,11 +6,11 @@
     top: 0;
     left: 0;
     right: 0;
-    padding: 1.75rem 0;
+    padding: 1.6rem 0;
 }
 
 .header__logo {
-    width: 15rem;
+    width: 15.5rem;
     height: 2.25rem;
 
     background-image: url('/images/logo.svg');
@@ -30,7 +30,7 @@
 
 .section-hero__main-content {
     position: relative;
-    max-width: 34.375rem;
+    max-width: 34rem;
     padding-top: 7.75rem;
     padding-bottom: 8.125rem;
 }
@@ -38,10 +38,10 @@
 .section-hero__main-content::before {
     content: '';
     position: absolute;
-    width: 100rem;
+    width: 104rem;
     height: calc(100% + 3rem);
     bottom: 0;
-    left: -12rem;
+    left: -13rem;
 
     background-image: url('/images/hero-background-image.jpg');
     background-position: center bottom;
@@ -104,6 +104,7 @@
 .ticker {
     padding: 1.125rem 0;
     background-color: var(--accent-color);
+    overflow: hidden;
 }
 
 .ticker__wrapper {
@@ -139,11 +140,12 @@
 /* Section Support */
 
 .section-support {
-    padding-top: 5rem;
+    padding-top: 6.7rem;
 }
 
-.section-support__header {
-}
+/* .section-support__header {
+    height: 15.625rem;
+} */
 
 .section-support__heading,
 .section-support__heading-divide {
@@ -162,10 +164,12 @@
 
 .section-support__header-image {
     float: right;
-    margin-inline-start: 4rem;
+
     width: 24.625rem;
     height: 15.625rem;
     max-width: 30vw;
+    margin-inline-start: 4rem;
+    margin-block-start: -2rem;
 }
 
 .section-support__header-image > img {
@@ -177,7 +181,7 @@
 
 .section-support__main {
     clear: both;
-    padding-top: 4rem;
+    padding-top: 4.25rem;
 
     display: flex;
     gap: 2.75rem;
@@ -185,7 +189,7 @@
 
 .section-support__main-image {
     position: relative;
-    max-width: 30rem;
+    max-width: 29.6rem;
     min-height: 33rem;
     width: 100%;
     height: 100%;
@@ -193,13 +197,13 @@
 
 .section-support__main-image > img {
     position: absolute;
-    top: -1.75rem;
+    top: -3rem;
     left: -1.75rem;
     right: -1.75rem;
-    bottom: -1.75rem;
+    bottom: -1rem;
 
     width: calc(100% + 3.5rem);
-    height: calc((100% + 3.5rem));
+    height: calc((100% + 4rem));
     object-fit: contain;
     object-position: top;
 }
@@ -282,21 +286,28 @@
     margin-top: 12.5rem;
 }
 
+.section-stages__header {
+    max-width: 48rem;
+}
+
 .section-stages__heading {
     font-size: 3.375rem;
+    line-height: 120%;
 }
 
 .section-stages__heading-caption {
     display: inline-block;
     max-width: 17.5rem;
+    margin-inline-start: 0.25rem;
+
     font-family: var(--body-font);
     font-size: 1.25rem;
+    line-height: 120%;
     text-transform: none;
     color: var(--link-color);
 }
 
 .section-stages__main {
-    overflow: hidden;
     padding-top: 3.375rem;
     position: relative;
 }
@@ -305,7 +316,7 @@
     content: '';
     position: absolute;
     bottom: -0.625rem;
-    left: calc(50% + 20rem);
+    left: calc(51% + 17rem);
 
     width: 25rem;
     height: 15rem;
@@ -313,11 +324,13 @@
     background-image: url('/images/stages-main-image.jpg');
     background-size: contain;
     background-repeat: no-repeat;
+
+    pointer-events: none;
 }
 
 .section-stages__cards-list {
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: repeat(3, calc(33% - 0.56rem));
     gap: 1.25rem;
 }
 
@@ -352,7 +365,7 @@
 
 .section-stages__cards-content {
     width: 100%;
-    padding: 1.25rem;
+    padding: 1.27rem;
 
     display: flex;
     gap: 1rem;
@@ -377,6 +390,7 @@
 
 .section-stages__cards-text {
     font-size: 1.25rem;
+    line-height: 117%;
     font-weight: 500;
     max-width: 28.125rem;
 }
@@ -387,7 +401,7 @@
     gap: 1rem;
     width: fit-content;
     margin-inline: auto;
-    margin-top: 1.75rem;
+    margin-top: 2rem;
 }
 
 .section-stages__marker-container {
@@ -412,7 +426,7 @@
 /* Section Members */
 
 .section-members {
-    margin-top: 12.5rem;
+    margin-top: 13rem;
 }
 
 .section-members__inner-wrapper {
@@ -456,7 +470,7 @@
 
 .section-members__item {
     flex: none;
-    width: 33%;
+    width: calc(33% - 0.56rem);
 
     display: flex;
     flex-direction: column;
@@ -502,6 +516,7 @@
 
 .footer__caption {
     font-size: 1rem;
+    line-height: 120%;
     opacity: 0.6;
 }
 
@@ -526,10 +541,12 @@
     }
 
     .section-hero__main-content::before {
-        width: 56.5rem;
-        height: 22.5rem;
+        width: 56rem;
+        height: 25rem;
         left: calc(50% - 37rem);
+        bottom: -1rem;
         background-size: contain;
+        background-image: url('/images/hero-background-image-mob.jpg');
     }
 
     .section-hero__heading {
@@ -550,7 +567,7 @@
     .section-hero__cta-wrapper > .btn {
         flex-basis: unset;
         max-width: none;
-        padding: 0.75rem 1rem;
+        padding: 0.81rem 1rem;
     }
 
     .section-hero__cta-wrapper > .btn_secondary {
@@ -595,7 +612,7 @@
 
     .section-support__header-image {
         margin: 0;
-        max-width: 30rem;
+        max-width: 24rem;
         width: 100%;
         height: auto;
         margin-inline: auto;
@@ -605,8 +622,9 @@
     }
 
     .section-support__main {
+        padding-top: 2.25rem;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1.6rem;
     }
 
     .section-support__main-image {
@@ -623,8 +641,8 @@
         right: -1rem;
         bottom: -1rem;
 
-        width: calc(100% + 2rem);
-        height: calc((100% + 2rem));
+        width: calc(100% + 2.5rem);
+        height: calc((100% + 2.5em));
     }
 
     .section-support__main-content {
@@ -632,7 +650,7 @@
     }
 
     .section-support__table-list {
-        margin-top: 2.75rem;
+        margin-top: 2rem;
     }
 
     .section-support__table-item {
@@ -663,7 +681,7 @@
     }
 
     .section-support__caption {
-        margin-top: 2.5rem;
+        margin-top: 1.5rem;
         font-size: 1.125rem;
         color: var(--link-color);
     }
@@ -676,6 +694,7 @@
 
     .section-stages__heading {
         font-size: 2.25rem;
+        line-height: 115%;
     }
 
     .section-stages__heading-caption {
@@ -686,18 +705,21 @@
     }
 
     .section-stages__main {
+        overflow: hidden;
         padding-top: 9.25rem;
     }
 
     .section-stages__main::after {
         position: absolute;
         bottom: unset;
-        right: 0;
-        top: 0;
+        right: -1rem;
+        top: 0.75rem;
         left: 0;
 
         width: unset;
-        height: 14.5rem;
+        max-width: 21rem;
+        height: 17.5rem;
+        transform: rotateZ(-2deg);
     }
 
     .section-stages__cards-list {
@@ -762,11 +784,16 @@
     .section-members__item {
         flex: none;
         width: 100%;
+        padding: 0 1.25rem;
     }
 
     .section-members__image-wrapper {
         width: 15.25rem;
         height: 15.25rem;
+    }
+
+    .section-members__text-wrapper {
+        gap: 0.5rem;
     }
 
     /* Footer */
