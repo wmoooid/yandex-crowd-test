@@ -59,7 +59,10 @@
     font-size: clamp(12px, 1.171vw, 16px);
 }
 
-html,
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--body-font);
     padding: 0;

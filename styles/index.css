@@ -102,6 +102,8 @@
 /* Ticker */
 
 .ticker {
+    display: flex;
+    align-items: center;
     padding: 1.125rem 0;
     background-color: var(--accent-color);
     overflow: hidden;
@@ -109,13 +111,48 @@
 
 .ticker__wrapper {
     display: flex;
-    gap: 0.75rem;
     align-items: center;
+    will-change: transform;
+}
+
+.ticker__wrapper:nth-child(1) {
+    animation-name: ticker;
+    animation-duration: 60s;
+    animation-delay: -60s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.ticker__wrapper:nth-child(2) {
+    animation-name: ticker-rev;
+    animation-duration: 60s;
+    animation-delay: -30s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes ticker {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes ticker-rev {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-200%);
+    }
 }
 
 .ticker__text {
     flex: none;
     width: max-content;
+    padding-right: 0.75rem;
 
     display: flex;
     gap: 0.75rem;
@@ -142,10 +179,6 @@
 .section-support {
     padding-top: 6.7rem;
 }
-
-/* .section-support__header {
-    height: 15.625rem;
-} */
 
 .section-support__heading,
 .section-support__heading-divide {
@@ -284,6 +317,7 @@
 
 .section-stages {
     margin-top: 12.5rem;
+    scroll-margin-top: 4rem;
 }
 
 .section-stages__header {
