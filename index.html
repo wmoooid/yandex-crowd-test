@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="/styles/normalize.css" />
         <link rel="stylesheet" href="/styles/globals.css" />
         <link rel="stylesheet" href="/styles/index.css" />
+        <script defer src="/scripts/script.js"></script>
     </head>
     <body>
         <header class="header">
@@ -115,7 +116,7 @@
                         </h2>
                     </div>
                     <div class="section-stages__main">
-                        <ul class="section-stages__cards-list">
+                        <ul class="section-stages__cards-list" aria-label="slider">
                             <li class="section-stages__cards-item">
                                 <div class="section-stages__cards-content">
                                     <span class="section-stages__cards-number">1</span>
@@ -164,14 +165,9 @@
                             </li>
                         </ul>
                         <div class="section-stages__controls-container">
-                            <button class="btn btn_with-arrow btn_with-arrow-left"></button>
-                            <div class="section-stages__marker-container">
-                                <span class="section-stages__controls-marker section-stages__controls-marker_active"></span>
-                                <span class="section-stages__controls-marker"></span><span class="section-stages__controls-marker"> </span>
-                                <span class="section-stages__controls-marker"></span>
-                                <span class="section-stages__controls-marker"></span>
-                            </div>
-                            <button class="btn btn_with-arrow"></button>
+                            <button class="btn btn_with-arrow btn_with-arrow-left" aria-label="button-prev"></button>
+                            <div class="section-stages__marker-container" aria-label="marker-list"></div>
+                            <button class="btn btn_with-arrow" aria-label="button-next"></button>
                         </div>
                     </div>
                 </div>
@@ -181,17 +177,17 @@
                     <div class="section-members__inner-wrapper">
                         <h2 class="section-members__heading">Участники турнира</h2>
                         <div class="section-members__controls-wrapper">
-                            <button class="btn btn_with-arrow btn_with-arrow-left"></button>
+                            <button class="btn btn_with-arrow btn_with-arrow-left" aria-label="button-prev"></button>
                             <div class="section-members__controls-counter">
-                                <span class="section-members__controls-counter_current">1</span>
+                                <span class="section-members__controls-counter_current" aria-label="current-counter">1</span>
                                 <span class="section-members__controls-counter_length">/</span>
-                                <span class="section-members__controls-counter_length">6</span>
+                                <span class="section-members__controls-counter_length" aria-label="length-counter">6</span>
                             </div>
-                            <button class="btn btn_with-arrow"></button>
+                            <button class="btn btn_with-arrow" aria-label="button-next"></button>
                         </div>
 
                         <div class="section-members__main">
-                            <ul class="section-members__list">
+                            <ul class="section-members__list" aria-label="slider">
                                 <li class="section-members__item">
                                     <div class="section-members__image-wrapper">
                                         <img src="/images/members-image.jpg" alt="Хозе-Рауль Капабланка" />

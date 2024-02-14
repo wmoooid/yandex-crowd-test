@@ -185,6 +185,16 @@ h5 {
     pointer-events: none;
 }
 
+.slider-marker {
+    width: 0.625rem;
+    height: 0.625rem;
+    background-color: var(--main-color);
+    border-radius: 10rem;
+
+    opacity: 0.2;
+    transition: opacity 200ms ease-out;
+}
+
 @media screen and (max-width: 960px) {
     * {
         font-size: clamp(12px, 4.1vw, 20px);
