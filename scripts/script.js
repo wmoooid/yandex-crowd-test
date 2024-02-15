@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', {});
 initSlider(document.querySelector('.section-members__inner-wrapper'), {
     infinite: true,
     markers: false,
-    autoplay: 4000,
+    // autoplay: 4000,
 });
 
 initSlider(document.querySelector('.section-stages__main'), {
@@ -19,20 +19,28 @@ function initSlider(wrapper, options) {
     const lengthCounter = wrapper.querySelector('[aria-label="length-counter"]');
     const markerList = wrapper.querySelector('[aria-label="marker-list"]');
 
-    let shouldWait = false;
+    const slidesOnScreen = 3;
+    const bufferLength = options.infinite ? 3 : 0;
     let currentPosition = 0;
-    const sliderLength = slider.children.length;
+    let autoPlayInterval = null;
+    const sliderLength = slider.children.length + bufferLength;
 
     initSlider();
 
+    if (options.autoplay) {
+        autoPlay('start');
+        wrapper.addEventListener('mouseenter', () => autoPlay('stop'));
+        wrapper.addEventListener('mouseleave', () => autoPlay('start'));
+    }
+
     buttonLeft.addEventListener('click', () => makeTransition(-1));
     buttonRight.addEventListener('click', () => makeTransition(+1));
-    window.addEventListener('resize', () => {
-        UpdateSliderPosition(false);
-        shouldWait = false;
-    });
+    window.addEventListener('resize', () => updateSliderPosition(false));
 
-    if (options.autoplay) setInterval(() => makeTransition(+1), options.autoplay);
+    function autoPlay(command) {
+        if (command === 'start') autoPlayInterval = setInterval(() => makeTransition(+1), options.autoplay);
+        if (command === 'stop') clearInterval(autoPlayInterval);
+    }
 
     function initSlider() {
         if (options.markers) {
@@ -42,15 +50,18 @@ function initSlider(wrapper, options) {
                 markerList.appendChild(marker);
             });
         } else {
-            lengthCounter.textContent = sliderLength;
+            lengthCounter.textContent = sliderLength - bufferLength;
         }
 
         if (options.infinite) {
-            slider.querySelectorAll('li').forEach((el, i) => {
-                if (i < 3) {
-                    slider.appendChild(el.cloneNode(true));
-                }
-            });
+            const nodesArr = Array.from(slider.children);
+            nodesArr.slice(0, bufferLength).forEach((el) => slider.append(el.cloneNode(true)));
+            nodesArr
+                .slice(-bufferLength)
+                .reverse()
+                .forEach((el) => slider.prepend(el.cloneNode(true)));
+            currentPosition = bufferLength;
+            updateSliderPosition(false);
         }
 
         updateCount();
@@ -58,17 +69,18 @@ function initSlider(wrapper, options) {
     }
 
     function updateCount() {
+        console.log(currentPosition, sliderLength);
         if (currentPosition >= sliderLength) {
             options.markers ? updateMarker(1) : (currentCounter.textContent = 1);
             return;
         }
 
-        if (currentPosition < 0) {
-            options.markers ? updateMarker(sliderLength) : (currentCounter.textContent = sliderLength);
+        if (currentPosition < bufferLength) {
+            options.markers ? updateMarker(sliderLength - bufferLength) : (currentCounter.textContent = sliderLength - bufferLength);
             return;
         }
 
-        options.markers ? updateMarker(currentPosition + 1) : (currentCounter.textContent = currentPosition + 1);
+        options.markers ? updateMarker(currentPosition - bufferLength + 1) : (currentCounter.textContent = currentPosition - bufferLength + 1);
     }
 
     function updateControls() {
@@ -87,38 +99,29 @@ function initSlider(wrapper, options) {
         markerList.children[position - 1].style.opacity = 1;
     }
 
-    function UpdateSliderPosition(withTransition = true) {
+    function updateSliderPosition(withTransition = true) {
         const offset = slider.children[0].clientWidth + 20;
         slider.style.transition = withTransition ? 'transform 500ms cubic-bezier(0.45, 1.45, 0.8, 1)' : '';
         slider.style.transform = `translateX(${-offset * currentPosition}px)`;
     }
 
     function makeTransition(dir) {
-        if (shouldWait) return;
-        shouldWait = true;
-
         currentPosition += dir;
 
-        if (currentPosition < 0) {
-            currentPosition = sliderLength;
-            UpdateSliderPosition(false);
+        if (currentPosition <= 1) {
+            currentPosition = sliderLength - 1;
+            updateSliderPosition(false);
             --currentPosition;
         }
 
-        setTimeout(UpdateSliderPosition);
+        if (currentPosition >= sliderLength - 1) {
+            currentPosition = bufferLength - 2;
+            updateSliderPosition(false);
+            ++currentPosition;
+        }
+
+        setTimeout(updateSliderPosition);
         updateCount();
         updateControls();
-
-        slider.addEventListener(
-            'transitionend',
-            () => {
-                shouldWait = false;
-                if (currentPosition === sliderLength) {
-                    currentPosition = 0;
-                    UpdateSliderPosition(false);
-                }
-            },
-            { once: true },
-        );
     }
 }

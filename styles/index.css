@@ -496,11 +496,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    user-select: none;
 }
 
 .section-members__image-wrapper {
     width: 20rem;
     height: 20rem;
+    pointer-events: none;
 }
 
 .section-members__text-wrapper {
