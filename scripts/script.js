@@ -1,13 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    initSlider(document.querySelector('.section-members__inner-wrapper'), {
-        infinite: true,
-        markers: false,
-        autoplay: 4000,
-    });
+    const slidersConfig = [
+        { selector: '.section-members__inner-wrapper', options: { infinite: true, markers: false, autoplay: 4000 } },
+        { selector: '.section-stages__main', options: { infinite: false, markers: true } },
+    ];
 
-    initSlider(document.querySelector('.section-stages__main'), {
-        infinite: false,
-        markers: true,
+    slidersConfig.forEach(({ selector, options }) => {
+        const wrapper = document.querySelector(selector);
+        initSlider(wrapper, options);
     });
 
     function initSlider(wrapper, options) {
@@ -37,34 +36,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function init() {
             if (options.markers) {
-                sliderArr.forEach(() => {
-                    const marker = document.createElement('span');
-                    marker.classList.add('slider__marker');
-                    markerList.appendChild(marker);
-                });
+                createMarkers();
             }
 
-            sliderArr.forEach((el) => el.classList.add('slider__item'));
+            addSliderClasses();
             updateState();
+        }
+
+        function addSliderClasses() {
+            sliderArr.forEach((el) => el.classList.add('slider__item'));
+        }
+
+        function createMarkers() {
+            sliderArr.forEach(() => {
+                const marker = document.createElement('span');
+                marker.classList.add('slider__marker');
+                markerList.appendChild(marker);
+            });
         }
 
         function arrangeSlides() {
             sliderArr.forEach((el, i) => {
                 const position = getSlidePosition(i);
                 el.style.setProperty('--position', position);
-
-                if (position < 0 || position > 2) {
-                    el.classList.add('hide');
-                } else {
-                    el.classList.remove('hide');
-                }
+                el.classList.toggle('hide', position < 0 || position > slidesOnScreen);
             });
         }
 
         function updateCounter() {
             if (options.markers) {
-                Array.from(markerList.children).forEach((el) => (el.style.opacity = ''));
-                markerList.children[sliderPosition].style.opacity = 1;
+                Array.from(markerList.children).forEach((el, i) => (el.style.opacity = i === sliderPosition ? 1 : ''));
             } else {
                 currentCounter.textContent = sliderPosition + 1;
                 lengthCounter.textContent = sliderLength;
@@ -74,11 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
         function updateControls() {
             if (options.infinite) return;
 
-            buttonLeft.removeAttribute('disabled');
-            buttonRight.removeAttribute('disabled');
-
-            if (sliderPosition === 0) buttonLeft.setAttribute('disabled', 'true');
-            if (sliderPosition === sliderLength - 1) buttonRight.setAttribute('disabled', 'true');
+            buttonLeft.toggleAttribute('disabled', sliderPosition === 0);
+            buttonRight.toggleAttribute('disabled', sliderPosition === sliderLength - 1);
         }
 
         function updateState() {
@@ -106,9 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function correctIndex(index) {
-            if (index < 0) return index + sliderLength;
-            if (index >= sliderLength) return index - sliderLength;
-            return index;
+            return (index + sliderLength) % sliderLength;
         }
 
         function autoPlay(command) {
