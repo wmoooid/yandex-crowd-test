@@ -360,6 +360,7 @@
     background-repeat: no-repeat;
 
     pointer-events: none;
+    z-index: 10;
 }
 
 .section-stages__cards-list {
@@ -484,19 +485,22 @@
 }
 
 .section-members__list {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--slider-gap);
 }
 
 .section-members__item {
-    flex: none;
-    width: calc(33% - 10px);
+    width: 100%;
+    grid-column: 1;
+    grid-row: 1;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     user-select: none;
+
+    background-color: var(--background-color);
 }
 
 .section-members__image-wrapper {
@@ -544,8 +548,9 @@
 }
 
 @media screen and (min-width: 961px) {
-    .section-stages__cards-list {
+    .section-stages__cards-item {
         transform: none !important;
+        opacity: unset !important;
     }
 }
 
@@ -752,14 +757,16 @@
     }
 
     .section-stages__cards-list {
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        gap: var(--slider-gap);
     }
 
     .section-stages__cards-item {
-        flex: none;
+        grid-row: 1 !important;
+        grid-column: 1 !important;
         width: 100%;
+
         flex-direction: column;
         gap: 1.75rem;
         padding: 4rem 1.25rem 2rem 1.25rem;
@@ -806,8 +813,11 @@
         grid-column: 1/1;
     }
 
+    .section-members__list {
+        grid-template-columns: 1fr;
+    }
+
     .section-members__item {
-        flex: none;
         width: 100%;
         padding: 0 1.25rem;
     }
@@ -831,4 +841,23 @@
     .footer__container {
         padding-bottom: 3.75rem;
     }
+}
+
+@keyframes fade-in-left {
+    0% {
+        transform: translateX(-100%) rotate(-5deg);
+        opacity: 0;
+    }
+    100% {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+a {
+    animation-name: fade-in-left;
+    animation-duration: 750ms;
+    animation-delay: 0;
+    animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(0.45, 1.45, 0.8, 1);
 }

@@ -45,6 +45,7 @@
     --grey82: #d0d0d0;
     --heading-font: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
     --body-font: 'GolosText', Arial, Helvetica, sans-serif;
+    --slider-gap: 20px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -185,7 +186,20 @@ h5 {
     pointer-events: none;
 }
 
-.slider-marker {
+[aria-label='slider'] > * {
+    z-index: 1;
+    transition: transform 500ms cubic-bezier(0.45, 1.45, 0.8, 1), opacity 300ms ease-out;
+}
+
+.slider__item {
+    transform: translateX(calc((100% + var(--slider-gap)) * var(--position)));
+}
+
+.slider__item.hide {
+    opacity: 0;
+}
+
+.slider__marker {
     width: 0.625rem;
     height: 0.625rem;
     background-color: var(--main-color);
