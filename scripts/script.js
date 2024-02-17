@@ -1,117 +1,4 @@
 (() => {
-    class Slider {
-        constructor(wrapper, options) {
-            this.wrapper = wrapper;
-            this.options = options;
-
-            this.slider = this.wrapper.querySelector('[aria-label="slider"]');
-            this.buttonLeft = this.wrapper.querySelector('[aria-label="button-prev"]');
-            this.buttonRight = this.wrapper.querySelector('[aria-label="button-next"]');
-            this.currentCounter = this.wrapper.querySelector('[aria-label="current-counter"]');
-            this.lengthCounter = this.wrapper.querySelector('[aria-label="length-counter"]');
-            this.markerList = this.wrapper.querySelector('[aria-label="marker-list"]');
-            this.sliderPosition = 0;
-            this.autoPlayInterval = null;
-            this.slidesOnScreen = 3;
-            this.sliderArr = Array.from(this.slider.children);
-            this.sliderLength = this.sliderArr.length;
-
-            this.init();
-            this.addEventListeners();
-        }
-
-        init() {
-            if (this.options.markers) {
-                this.createMarkers();
-            }
-            this.addSliderClasses();
-            this.updateState();
-            if (this.options.autoplay) {
-                this.autoPlay('start');
-                this.wrapper.addEventListener('mouseenter', () => this.autoPlay('stop'));
-                this.wrapper.addEventListener('mouseleave', () => this.autoPlay('start'));
-            }
-        }
-
-        addSliderClasses() {
-            this.sliderArr.forEach((el) => el.classList.add('slider__item'));
-        }
-
-        createMarkers() {
-            this.sliderArr.forEach((el, i) => {
-                const marker = document.createElement('span');
-                marker.classList.add('slider__marker');
-                this.markerList.appendChild(marker);
-                marker.addEventListener('click', () => {
-                    this.sliderPosition = i;
-                    this.updateState();
-                });
-            });
-        }
-
-        arrangeSlides() {
-            this.sliderArr.forEach((el, i) => {
-                const position = this.getSlidePosition(i);
-                el.style.setProperty('--position', position);
-                el.classList.toggle('hide', position < 0 || position >= this.slidesOnScreen);
-            });
-        }
-
-        updateCounter() {
-            if (this.options.markers) {
-                Array.from(this.markerList.children).forEach((el, i) => (el.style.opacity = i === this.sliderPosition ? 1 : ''));
-            } else {
-                this.currentCounter.textContent = this.sliderPosition + 1;
-                this.lengthCounter.textContent = this.sliderLength;
-            }
-        }
-
-        updateControls() {
-            if (this.options.infinite) return;
-
-            this.buttonLeft.toggleAttribute('disabled', this.sliderPosition === 0);
-            this.buttonRight.toggleAttribute('disabled', this.sliderPosition === this.sliderLength - 1);
-        }
-
-        updateState() {
-            this.arrangeSlides();
-            this.updateCounter();
-            this.updateControls();
-        }
-
-        getSlidePosition(index) {
-            const leftSidePosition = this.sliderPosition;
-            const rightSidePosition = this.correctIndex(this.sliderPosition + this.slidesOnScreen - 1);
-
-            const nextOnLeft = this.correctIndex(leftSidePosition - 1);
-            const nextOnRight = this.correctIndex(rightSidePosition + 1);
-
-            if (index === nextOnLeft) return -1;
-            if (index === nextOnRight) return this.slidesOnScreen;
-
-            return this.correctIndex(index - this.sliderPosition);
-        }
-
-        makeTransition(direction) {
-            this.sliderPosition = this.correctIndex(this.sliderPosition + direction);
-            this.updateState();
-        }
-
-        correctIndex(index) {
-            return (index + this.sliderLength) % this.sliderLength;
-        }
-
-        autoPlay(command) {
-            if (command === 'start') this.autoPlayInterval = setInterval(() => this.makeTransition(+1), this.options.autoplay);
-            if (command === 'stop') clearInterval(this.autoPlayInterval);
-        }
-
-        addEventListeners() {
-            this.buttonLeft.addEventListener('click', () => this.makeTransition(-1));
-            this.buttonRight.addEventListener('click', () => this.makeTransition(+1));
-        }
-    }
-
     const slidersConfig = [
         { selector: '.section-members__inner-wrapper', options: { infinite: true, markers: false, autoplay: 4000 } },
         { selector: '.section-stages__main', options: { infinite: false, markers: true } },
@@ -119,8 +6,116 @@
 
     slidersConfig.forEach(({ selector, options }) => {
         const wrapper = document.querySelector(selector);
-        new Slider(wrapper, options);
+        initSlider(wrapper, options);
     });
+
+    function initSlider(wrapper, options) {
+        const slider = wrapper.querySelector('[aria-label="slider"]');
+        const buttonLeft = wrapper.querySelector('[aria-label="button-prev"]');
+        const buttonRight = wrapper.querySelector('[aria-label="button-next"]');
+        const currentCounter = wrapper.querySelector('[aria-label="current-counter"]');
+        const lengthCounter = wrapper.querySelector('[aria-label="length-counter"]');
+        const markerList = wrapper.querySelector('[aria-label="marker-list"]');
+
+        let sliderPosition = 0;
+        let autoPlayInterval = null;
+        const slidesOnScreen = 3;
+        const sliderArr = Array.from(slider.children);
+        const sliderLength = sliderArr.length;
+
+        init();
+
+        if (options.autoplay) {
+            autoPlay('start');
+            wrapper.addEventListener('mouseenter', () => autoPlay('stop'));
+            wrapper.addEventListener('mouseleave', () => autoPlay('start'));
+        }
+
+        buttonLeft.addEventListener('click', () => makeTransition(-1));
+        buttonRight.addEventListener('click', () => makeTransition(+1));
+
+        function init() {
+            if (options.markers) {
+                createMarkers();
+            }
+
+            addSliderClasses();
+            updateState();
+        }
+
+        function addSliderClasses() {
+            sliderArr.forEach((el) => el.classList.add('slider__item'));
+        }
+
+        function createMarkers() {
+            sliderArr.forEach((el, i) => {
+                const marker = document.createElement('span');
+                marker.classList.add('slider__marker');
+                markerList.appendChild(marker);
+                marker.addEventListener('click', () => {
+                    sliderPosition = i;
+                    updateState();
+                });
+            });
+        }
+
+        function arrangeSlides() {
+            sliderArr.forEach((el, i) => {
+                const position = getSlidePosition(i);
+                el.style.setProperty('--position', position);
+                el.classList.toggle('hide', position < 0 || position >= slidesOnScreen);
+            });
+        }
+
+        function updateCounter() {
+            if (options.markers) {
+                Array.from(markerList.children).forEach((el, i) => (el.style.opacity = i === sliderPosition ? 1 : ''));
+            } else {
+                currentCounter.textContent = sliderPosition + 1;
+                lengthCounter.textContent = sliderLength;
+            }
+        }
+
+        function updateControls() {
+            if (options.infinite) return;
+
+            buttonLeft.toggleAttribute('disabled', sliderPosition === 0);
+            buttonRight.toggleAttribute('disabled', sliderPosition === sliderLength - 1);
+        }
+
+        function updateState() {
+            arrangeSlides();
+            updateCounter();
+            updateControls();
+        }
+
+        function getSlidePosition(index) {
+            const leftSidePosition = sliderPosition;
+            const rightSidePosition = correctIndex(sliderPosition + slidesOnScreen - 1);
+
+            const nextOnLeft = correctIndex(leftSidePosition - 1);
+            const nextOnRight = correctIndex(rightSidePosition + 1);
+
+            if (index === nextOnLeft) return -1;
+            if (index === nextOnRight) return slidesOnScreen;
+
+            return correctIndex(index - sliderPosition);
+        }
+
+        function makeTransition(direction) {
+            sliderPosition = correctIndex(sliderPosition + direction);
+            updateState();
+        }
+
+        function correctIndex(index) {
+            return (index + sliderLength) % sliderLength;
+        }
+
+        function autoPlay(command) {
+            if (command === 'start') autoPlayInterval = setInterval(() => makeTransition(+1), options.autoplay);
+            if (command === 'stop') clearInterval(autoPlayInterval);
+        }
+    }
 
     const startAnimation = (entries) => {
         entries.forEach(({ isIntersecting, target }) => {
