@@ -16,15 +16,21 @@
     <body>
         <header class="header">
             <div class="container">
-                <img src="/images/logo.svg" alt="Клуб четырех коней" class="header__logo" />
+                <img
+                    src="/images/logo.svg"
+                    alt="Клуб четырех коней"
+                    class="header__logo"
+                    data-animation="fade-in-left"
+                    data-animation-delay="100ms"
+                />
             </div>
         </header>
         <main>
             <section class="section-hero">
                 <div class="section-hero__main-wrapper">
                     <div class="container">
-                        <div class="section-hero__main-content">
-                            <h1 class="section-hero__heading">
+                        <div class="section-hero__main-content" data-animation="fade-in" data-animation-delay="100ms">
+                            <h1 class="section-hero__heading" data-animation="fade-in-up" data-animation-delay="500ms">
                                 <span class="section-hero__heading_left">
                                     Превратите <br />
                                     уездный город</span
@@ -32,10 +38,10 @@
                                 <span class="section-hero__heading_center">в столицу</span>
                                 <span class="section-hero__heading_right">земного шара</span>
                             </h1>
-                            <p class="section-hero__text">
+                            <p class="section-hero__text" data-animation="fade-in-up" data-animation-delay="700ms">
                                 Оплатите взнос на телеграммы для организации Международного васюкинского турнира по шахматам
                             </p>
-                            <div class="section-hero__cta-wrapper">
+                            <div class="section-hero__cta-wrapper" data-animation="fade-in-up" data-animation-delay="900ms">
                                 <a href="#support" class="btn btn_primary">Поддержать шахматную мысль</a>
                                 <a href="#stages" class="btn btn_secondary">Подробнее о турнире</a>
                             </div>
@@ -63,7 +69,7 @@
             </section>
             <section id="support" class="section-support">
                 <div class="container">
-                    <div class="section-support__header">
+                    <div class="section-support__header" data-animation="fade-in-down" data-animation-delay="300ms">
                         <h2 class="section-support__heading-comp">
                             <span class="section-support__heading-first">Чтобы поддержать Международный васюкинский турнир</span>
                             <span class="section-support__heading-second"
@@ -76,15 +82,15 @@
                         </h2>
                     </div>
                     <div class="section-support__main">
-                        <div class="section-support__main-image">
+                        <div class="section-support__main-image" data-animation="fade-in-down" data-animation-delay="500ms">
                             <img src="/images/support-main-image.png" alt="Сеанс одновременной игры в шахматы" />
                         </div>
-                        <div class="section-support__main-content">
+                        <div class="section-support__main-content" data-animation="fade-in-down" data-animation-delay="700ms">
                             <h2 class="section-support__heading">
                                 и Сеанс <span class="section-support__heading_accent">одновременной игры в шахматы на 160 досках</span> гроссмейстера
                                 О. Бендера
                             </h2>
-                            <ul class="section-support__table-list">
+                            <ul class="section-support__table-list" data-animation="fade-in-down" data-animation-delay="900ms">
                                 <li class="section-support__table-item">
                                     <span class="section-support__table-name">Место проведения:</span>
                                     <span class="section-support__table-value">Клуб «Картонажник»</span>
@@ -108,20 +114,22 @@
                                     >
                                 </li>
                             </ul>
-                            <p class="section-support__caption">По всем вопросам обращаться в администрацию к К. Михельсону</p>
+                            <p class="section-support__caption" data-animation="fade-in-down" data-animation-delay="100ms">
+                                По всем вопросам обращаться в администрацию к К. Михельсону
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
             <section id="stages" class="section-stages">
                 <div class="container">
-                    <div class="section-stages__header">
+                    <div class="section-stages__header" data-animation="fade-in-left" data-animation-delay="500ms">
                         <h2 class="section-stages__heading">
                             Этапы преображения Васюков
                             <span class="section-stages__heading-caption">Будущие источники обогащения васюкинцев</span>
                         </h2>
                     </div>
-                    <div class="section-stages__main">
+                    <div class="section-stages__main" data-animation="fade-in-up" data-animation-delay="700ms">
                         <ul class="section-stages__cards-list" aria-label="slider">
                             <li class="section-stages__cards-item">
                                 <div class="section-stages__cards-content">
@@ -181,8 +189,8 @@
             <section class="section-members">
                 <div class="container">
                     <div class="section-members__inner-wrapper">
-                        <h2 class="section-members__heading">Участники турнира</h2>
-                        <div class="section-members__controls-wrapper">
+                        <h2 class="section-members__heading" data-animation="fade-in-left" data-animation-delay="300ms">Участники турнира</h2>
+                        <div class="section-members__controls-wrapper" data-animation="fade-in-left" data-animation-delay="500ms">
                             <button class="btn btn_with-arrow btn_with-arrow-left" aria-label="button-prev"></button>
                             <div class="section-members__controls-counter">
                                 <span class="section-members__controls-counter_current" aria-label="current-counter">1</span>
@@ -192,7 +200,7 @@
                             <button class="btn btn_with-arrow" aria-label="button-next"></button>
                         </div>
 
-                        <div class="section-members__main">
+                        <div class="section-members__main" data-animation="fade-in-up" data-animation-delay="700ms">
                             <ul class="section-members__list" aria-label="slider">
                                 <li class="section-members__item">
                                     <article class="section-members__card">
