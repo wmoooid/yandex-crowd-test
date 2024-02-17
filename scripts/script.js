@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { selector: '.section-support__main-image', animation: 'fade-in-down', delay: '500ms' },
         { selector: '.section-support__main-content', animation: 'fade-in-down', delay: '700ms' },
         { selector: '.section-support__table-list', animation: 'fade-in-down', delay: '900ms' },
-        { selector: '.section-support__caption', animation: 'fade-in-down', delay: '500ms' },
+        { selector: '.section-support__caption', animation: 'fade-in-down', delay: '100ms' },
         { selector: '.section-stages__header', animation: 'fade-in-left', delay: '500ms' },
         { selector: '.section-stages__main', animation: 'fade-in-up', delay: '700ms' },
         { selector: '.section-members__heading', animation: 'fade-in-left', delay: '300ms' },
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const observer = new IntersectionObserver(startAnimation);
-    const options = { root: null, rootMargin: '0px', threshold: 1 };
+    const options = { root: null, rootMargin: '-500px', threshold: 1 };
 
     animationsConfig.forEach(({ selector, animation, delay }) => {
         const element = document.querySelector(selector);

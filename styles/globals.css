@@ -197,6 +197,7 @@ h5 {
 
 .slider__item.hide {
     opacity: 0;
+    transition: transform 200ms ease-out, opacity 300ms ease-out;
 }
 
 .slider__marker {
