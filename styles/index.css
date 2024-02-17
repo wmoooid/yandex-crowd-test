@@ -43,7 +43,7 @@
     bottom: 0;
     left: -13rem;
 
-    background-image: url('/images/hero-background-image.jpg');
+    background-image: url('/images/hero-background-image.png');
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: contain;
@@ -355,7 +355,7 @@
     width: 25rem;
     height: 15rem;
 
-    background-image: url('/images/stages-main-image.jpg');
+    background-image: url('/images/stages-main-image.png');
     background-size: contain;
     background-repeat: no-repeat;
 
@@ -580,7 +580,7 @@
         left: calc(50% - 37rem);
         bottom: -1rem;
         background-size: contain;
-        background-image: url('/images/hero-background-image-mob.jpg');
+        background-image: url('/images/hero-background-image-mob.png');
     }
 
     .section-hero__heading {
