@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+(() => {
     const slidersConfig = [
         { selector: '.section-members__inner-wrapper', options: { infinite: true, markers: false, autoplay: 4000 } },
         { selector: '.section-stages__main', options: { infinite: false, markers: true } },
@@ -48,10 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function createMarkers() {
-            sliderArr.forEach(() => {
+            sliderArr.forEach((el, i) => {
                 const marker = document.createElement('span');
                 marker.classList.add('slider__marker');
                 markerList.appendChild(marker);
+                marker.addEventListener('click', () => {
+                    sliderPosition = i;
+                    updateState();
+                });
             });
         }
 
@@ -152,4 +156,4 @@ document.addEventListener('DOMContentLoaded', () => {
             observer.observe(element, options);
         }
     });
-});
+})();

@@ -16,7 +16,7 @@
     <body>
         <header class="header">
             <div class="container">
-                <div class="header__logo"></div>
+                <img src="/images/logo.svg" alt="Клуб четырех коней" class="header__logo" />
             </div>
         </header>
         <main>
@@ -25,8 +25,8 @@
                     <div class="container">
                         <div class="section-hero__main-content">
                             <h1 class="section-hero__heading">
-                                <span class="section-hero__heading_left"
-                                    >Превратите <br />
+                                <span class="section-hero__heading_left">
+                                    Превратите <br />
                                     уездный город</span
                                 >
                                 <span class="section-hero__heading_center">в столицу</span>
@@ -64,14 +64,16 @@
             <section id="support" class="section-support">
                 <div class="container">
                     <div class="section-support__header">
-                        <div class="section-support__header-image">
-                            <img src="/images/support-header-image.jpg" alt="Лекцию на тему: «Плодотворная дебютная идея»" />
-                        </div>
-                        <h2 class="section-support__heading">Чтобы поддержать Международный васюкинский турнир</h2>
-                        <h3 class="section-support__heading-divide">
-                            посетите лекцию на тему:
-                            <span class="section-support__heading_accent">«Плодотворная дебютная идея»</span>
-                        </h3>
+                        <h2 class="section-support__heading-comp">
+                            <span class="section-support__heading-first">Чтобы поддержать Международный васюкинский турнир</span>
+                            <span class="section-support__heading-second"
+                                >посетите лекцию на тему:
+                                <span class="section-support__heading_accent">«Плодотворная дебютная идея»</span>
+                            </span>
+                            <span class="section-support__header-image">
+                                <img src="/images/support-header-image.jpg" alt="Лекцию на тему: «Плодотворная дебютная идея»" />
+                            </span>
+                        </h2>
                     </div>
                     <div class="section-support__main">
                         <div class="section-support__main-image">
@@ -193,64 +195,76 @@
                         <div class="section-members__main">
                             <ul class="section-members__list" aria-label="slider">
                                 <li class="section-members__item">
-                                    <div class="section-members__image-wrapper">
-                                        <img src="/images/members-image.jpg" alt="Хозе-Рауль Капабланка" />
-                                    </div>
-                                    <div class="section-members__text-wrapper">
-                                        <strong class="section-members__name">Хозе-Рауль Капабланка</strong>
-                                        <small class="section-members__position">Чемпион мира по шахматам</small>
-                                    </div>
-                                    <span class="btn btn_tertiary">Подробнее</span>
+                                    <article class="section-members__card">
+                                        <div class="section-members__image-wrapper">
+                                            <img src="/images/members-image.jpg" alt="Хозе-Рауль Капабланка" />
+                                        </div>
+                                        <div class="section-members__text-wrapper">
+                                            <strong class="section-members__name">Хозе-Рауль Капабланка</strong>
+                                            <small class="section-members__position">Чемпион мира по шахматам</small>
+                                        </div>
+                                        <span class="btn btn_tertiary">Подробнее</span>
+                                    </article>
                                 </li>
                                 <li class="section-members__item">
-                                    <div class="section-members__image-wrapper">
-                                        <img src="/images/members-image.jpg" alt="Эммануил Ласкер" />
-                                    </div>
-                                    <div class="section-members__text-wrapper">
-                                        <strong class="section-members__name">Эммануил Ласкер</strong>
-                                        <small class="section-members__position">Чемпион мира по шахматам</small>
-                                    </div>
-                                    <span class="btn btn_tertiary">Подробнее</span>
+                                    <article class="section-members__card">
+                                        <div class="section-members__image-wrapper">
+                                            <img src="/images/members-image.jpg" alt="Эммануил Ласкер" />
+                                        </div>
+                                        <div class="section-members__text-wrapper">
+                                            <strong class="section-members__name">Эммануил Ласкер</strong>
+                                            <small class="section-members__position">Чемпион мира по шахматам</small>
+                                        </div>
+                                        <span class="btn btn_tertiary">Подробнее</span>
+                                    </article>
                                 </li>
                                 <li class="section-members__item">
-                                    <div class="section-members__image-wrapper">
-                                        <img src="/images/members-image.jpg" alt="Александр Алехин" />
-                                    </div>
-                                    <div class="section-members__text-wrapper">
-                                        <strong class="section-members__name">Александр Алехин</strong>
-                                        <small class="section-members__position">Чемпион мира по шахматам</small>
-                                    </div>
-                                    <span class="btn btn_tertiary">Подробнее</span>
+                                    <article class="section-members__card">
+                                        <div class="section-members__image-wrapper">
+                                            <img src="/images/members-image.jpg" alt="Александр Алехин" />
+                                        </div>
+                                        <div class="section-members__text-wrapper">
+                                            <strong class="section-members__name">Александр Алехин</strong>
+                                            <small class="section-members__position">Чемпион мира по шахматам</small>
+                                        </div>
+                                        <span class="btn btn_tertiary">Подробнее</span>
+                                    </article>
                                 </li>
                                 <li class="section-members__item">
-                                    <div class="section-members__image-wrapper">
-                                        <img src="/images/members-image.jpg" alt="Арон Нимцович" />
-                                    </div>
-                                    <div class="section-members__text-wrapper">
-                                        <strong class="section-members__name">Арон Нимцович</strong>
-                                        <small class="section-members__position">Чемпион мира по шахматам</small>
-                                    </div>
-                                    <span class="btn btn_tertiary">Подробнее</span>
+                                    <article class="section-members__card">
+                                        <div class="section-members__image-wrapper">
+                                            <img src="/images/members-image.jpg" alt="Арон Нимцович" />
+                                        </div>
+                                        <div class="section-members__text-wrapper">
+                                            <strong class="section-members__name">Арон Нимцович</strong>
+                                            <small class="section-members__position">Чемпион мира по шахматам</small>
+                                        </div>
+                                        <span class="btn btn_tertiary">Подробнее</span>
+                                    </article>
                                 </li>
                                 <li class="section-members__item">
-                                    <div class="section-members__image-wrapper">
-                                        <img src="/images/members-image.jpg" alt="Рихард Рети" />
-                                    </div>
-                                    <div class="section-members__text-wrapper">
-                                        <strong class="section-members__name">Рихард Рети</strong>
-                                        <small class="section-members__position">Чемпион мира по шахматам</small>
-                                    </div>
-                                    <span class="btn btn_tertiary">Подробнее</span>
+                                    <article class="section-members__card">
+                                        <div class="section-members__image-wrapper">
+                                            <img src="/images/members-image.jpg" alt="Рихард Рети" />
+                                        </div>
+                                        <div class="section-members__text-wrapper">
+                                            <strong class="section-members__name">Рихард Рети</strong>
+                                            <small class="section-members__position">Чемпион мира по шахматам</small>
+                                        </div>
+                                        <span class="btn btn_tertiary">Подробнее</span>
+                                    </article>
                                 </li>
                                 <li class="section-members__item">
-                                    <div class="section-members__image-wrapper">
-                                        <img src="/images/members-image.jpg" alt="Остап Бендер" />
-                                    </div>
-                                    <div class="section-members__text-wrapper">
-                                        <strong class="section-members__name">Остап Бендер</strong>
-                                        <small class="section-members__position">Гроссмейстер</small>
-                                    </div>
-                                    <span class="btn btn_tertiary">Подробнее</span>
+                                    <article class="section-members__card">
+                                        <div class="section-members__image-wrapper">
+                                            <img src="/images/members-image.jpg" alt="Остап Бендер" />
+                                        </div>
+                                        <div class="section-members__text-wrapper">
+                                            <strong class="section-members__name">Остап Бендер</strong>
+                                            <small class="section-members__position">Гроссмейстер</small>
+                                        </div>
+                                        <span class="btn btn_tertiary">Подробнее</span>
+                                    </article>
                                 </li>
                             </ul>
                         </div>

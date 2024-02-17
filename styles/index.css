@@ -12,11 +12,7 @@
 .header__logo {
     width: 15.5rem;
     height: 2.25rem;
-
-    background-image: url('/images/logo.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    object-fit: contain;
 }
 
 /* Section Hero */
@@ -180,10 +176,14 @@
     padding-top: 6.7rem;
 }
 
+.section-support__header {
+    padding-right: 27rem;
+}
+
 .section-support__heading,
-.section-support__heading-divide {
+.section-support__heading-first,
+.section-support__heading-second {
     display: inline;
-    margin: 0;
     font-size: 2.25rem;
     font-weight: 400;
     line-height: 135%;
@@ -196,26 +196,26 @@
 }
 
 .section-support__header-image {
-    float: right;
+    display: inline-flex;
+    align-items: center;
+
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
 
     width: 24.625rem;
-    height: 15.625rem;
-    max-width: 30vw;
-    margin-inline-start: 4rem;
-    margin-block-start: -2rem;
 }
 
 .section-support__header-image > img {
-    width: 100%;
-    height: 100%;
+    width: 24.625rem;
+    height: 15.625rem;
     object-fit: contain;
     object-position: top;
 }
 
 .section-support__main {
-    clear: both;
-    padding-top: 4.25rem;
-
+    padding-top: 5.75rem;
     display: flex;
     gap: 2.75rem;
 }
@@ -496,7 +496,9 @@
     width: 100%;
     grid-column: 1;
     grid-row: 1;
+}
 
+.section-members__card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -610,6 +612,11 @@
         background-color: rgba(255, 255, 255, 0.9);
     }
 
+    .section-hero__cta-wrapper > .btn_secondary:hover {
+        background-color: var(--main-color);
+        color: var(--background-color);
+    }
+
     /* Ticker */
 
     .ticker {
@@ -627,25 +634,31 @@
     }
 
     .section-support__header {
+        padding: 0;
+    }
+
+    .section-support__heading-comp {
         display: flex;
         gap: 1.5rem;
         flex-direction: column;
     }
 
     .section-support__heading,
-    .section-support__heading-divide {
+    .section-support__heading-first,
+    .section-support__heading-second {
         display: block;
         margin: 0;
         font-size: 1.75rem;
+        line-height: 140%;
     }
 
-    .section-support__heading-divide {
-        display: block;
+    .section-support__heading-second {
         order: 3;
     }
 
     .section-support__header-image {
-        margin: 0;
+        position: static;
+
         max-width: 24rem;
         width: 100%;
         height: auto;
@@ -655,8 +668,13 @@
         order: 2;
     }
 
+    .section-support__header-image > img {
+        width: 100%;
+        height: 100%;
+    }
+
     .section-support__main {
-        padding-top: 2.25rem;
+        padding-top: 1.6rem;
         flex-direction: column;
         gap: 1.6rem;
     }
@@ -684,7 +702,7 @@
     }
 
     .section-support__table-list {
-        margin-top: 2rem;
+        margin-top: 1.5rem;
     }
 
     .section-support__table-item {
@@ -723,7 +741,7 @@
     /* Section Stages */
 
     .section-stages {
-        margin-top: 7.5rem;
+        margin-top: 7.6rem;
     }
 
     .section-stages__heading {
@@ -796,6 +814,7 @@
 
     .section-members__inner-wrapper {
         row-gap: 2.5rem;
+        justify-content: unset;
     }
 
     .section-members__heading {
