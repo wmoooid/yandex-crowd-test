@@ -839,11 +839,24 @@
     .footer__container {
         padding-bottom: 3.75rem;
     }
+
+    .with-animation {
+        animation-name: fade-in-up !important;
+    }
 }
 
-@keyframes fade-in-left {
+@keyframes fade-in {
     0% {
-        transform: translateX(-100%) rotate(-5deg);
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-up {
+    0% {
+        transform: translateY(6rem) rotate(2deg);
         opacity: 0;
     }
     100% {
@@ -852,10 +865,41 @@
     }
 }
 
-a {
-    animation-name: fade-in-left;
-    animation-duration: 750ms;
-    animation-delay: 0;
-    animation-iteration-count: 1;
-    animation-timing-function: cubic-bezier(0.45, 1.45, 0.8, 1);
+@keyframes fade-in-down {
+    0% {
+        transform: translateY(-6rem) rotate(-2deg);
+        opacity: 0;
+    }
+    100% {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-left {
+    0% {
+        transform: translateX(-10rem) rotate(-2deg);
+        opacity: 0;
+    }
+    100% {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-right {
+    0% {
+        transform: translateX(10rem) rotate(2deg);
+        opacity: 0;
+    }
+    100% {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion) {
+    .with-animation {
+        animation-name: fade-in;
+    }
 }

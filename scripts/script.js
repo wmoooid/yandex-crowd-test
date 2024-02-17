@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sliderArr.forEach((el, i) => {
                 const position = getSlidePosition(i);
                 el.style.setProperty('--position', position);
-                el.classList.toggle('hide', position < 0 || position > slidesOnScreen);
+                el.classList.toggle('hide', position < 0 || position >= slidesOnScreen);
             });
         }
 
@@ -113,17 +113,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // const startAnimation = entries => {
-    //     entries.forEach(entry => {
-    //       entry.target.classList.toggle("slide-in-from-right", entry.isIntersecting);
-    //     });
-    //   };
+    const animationsConfig = [
+        { selector: '.header__logo', animation: 'fade-in-left', delay: '100ms' },
+        { selector: '.section-hero__main-content', animation: 'fade-in', delay: '100ms' },
+        { selector: '.section-hero__heading', animation: 'fade-in-up', delay: '500ms' },
+        { selector: '.section-hero__text', animation: 'fade-in-up', delay: '700ms' },
+        { selector: '.section-hero__cta-wrapper', animation: 'fade-in-up', delay: '900ms' },
+        { selector: '.section-support__header', animation: 'fade-in-down', delay: '300ms' },
+        { selector: '.section-support__main-image', animation: 'fade-in-down', delay: '500ms' },
+        { selector: '.section-support__main-content', animation: 'fade-in-down', delay: '700ms' },
+        { selector: '.section-support__table-list', animation: 'fade-in-down', delay: '900ms' },
+        { selector: '.section-support__caption', animation: 'fade-in-down', delay: '500ms' },
+        { selector: '.section-stages__header', animation: 'fade-in-left', delay: '500ms' },
+        { selector: '.section-stages__main', animation: 'fade-in-up', delay: '700ms' },
+        { selector: '.section-members__heading', animation: 'fade-in-left', delay: '300ms' },
+        { selector: '.section-members__controls-wrapper', animation: 'fade-in-left', delay: '500ms' },
+        { selector: '.section-members__main', animation: 'fade-in-up', delay: '700ms' },
+    ];
 
-    //   const observer = new IntersectionObserver(startAnimation);
-    //   const options = { root: null, rootMargin: '0px', threshold: 1 };
+    const startAnimation = (entries) => {
+        entries.forEach(({ isIntersecting, target }) => {
+            if (isIntersecting) {
+                target.classList.add('with-animation');
+                target.style.animation = target.animationConfing;
+                observer.unobserve(target);
+            }
+        });
+    };
 
-    //   const elements = document.querySelectorAll('.card');
-    //   elements.forEach(el => {
-    //     observer.observe(el, options);
-    //   });
+    const observer = new IntersectionObserver(startAnimation);
+    const options = { root: null, rootMargin: '0px', threshold: 1 };
+
+    animationsConfig.forEach(({ selector, animation, delay }) => {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.style.opacity = '0';
+            element.animationConfing = `${animation} 750ms cubic-bezier(0.45, 1.45, 0.8, 1) ${delay} forwards`;
+            observer.observe(element, options);
+        }
+    });
 });
